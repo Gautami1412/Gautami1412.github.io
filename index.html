@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Gautami Deshpande, bioinformatics data scientist. Projects in statistical genetics, functional genomics, variant calling and machine learning.">
+<meta property="og:title" content="Gautami Deshpande | Bioinformatics">
+<meta property="og:description" content="Projects in statistical genetics, functional genomics, variant calling and machine learning.">
+<meta property="og:image" content="https://gautami1412.github.io/photo.jpg">
+<link rel="icon" href="photo.jpg">
+<title>Gautami Deshpande | Bioinformatics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Lato:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* Layout: classic personal-site template. Banner hero, profile card + about, project card grid that opens one page per project, timeline CV sections, dark contact band. Single light theme on purpose, like a site-builder template. */
+:root{
+  --bg:#ffffff; --alt:#f3f6f8; --ink:#1c2b36; --muted:#5b6b77; --line:#e1e7eb;
+  --navy:#1f3a5f; --teal:#2a9d8f; --teal-dark:#1f7a6f; --band:#13283f;
+  --f-head:"Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --f-body:"Lato", "Helvetica Neue", Arial, sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16.5px;line-height:1.7}
+h1,h2,h3,h4{font-family:var(--f-head);margin:0;line-height:1.25;text-wrap:balance;color:var(--navy)}
+p{margin:0}
+a{color:var(--teal-dark)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+.container{max-width:1100px;margin:0 auto;padding-inline:20px}
+.narrow{max-width:820px}
+
+/* header */
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:#fff;border-bottom:1px solid var(--line)}
+.topbar .container{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.logo{font-family:var(--f-head);font-weight:700;font-size:17px;letter-spacing:.04em;text-transform:uppercase;color:var(--navy);text-decoration:none}
+.menu{display:flex;gap:26px;list-style:none;margin:0;padding:0}
+.menu a{font-family:var(--f-head);font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);text-decoration:none}
+.menu a:hover{color:var(--teal)}
+@media (max-width:760px){.menu{gap:14px}.menu li.hide-sm{display:none}}
+@media (max-width:480px){.logo{font-size:14px}.menu{gap:12px}.menu a{font-size:11.5px;letter-spacing:.04em}.menu li.hide-xs{display:none}}
+
+/* hero */
+.hero{background:linear-gradient(rgba(19,40,63,.55),rgba(19,40,63,.82)),url("hero.jpg") center/cover no-repeat,var(--band);color:#fff;text-align:center;padding-block:clamp(72px,12vw,130px)}
+.hero .hello{font-family:var(--f-head);font-size:14px;letter-spacing:.3em;text-transform:uppercase;color:#bfe3dd}
+.hero h1{color:#fff;font-size:clamp(36px,6vw,60px);font-weight:700;letter-spacing:.01em;margin-top:10px}
+.hero .roles{margin-top:16px;font-size:clamp(14px,1.8vw,17px);letter-spacing:.04em;color:#dce6ec}
+.hero .roles span{opacity:.6;padding-inline:8px}
+.hero .cta{display:inline-block;margin-top:30px;font-family:var(--f-head);font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#fff;border:2px solid #fff;padding:12px 26px;text-decoration:none}
+.hero .cta:hover{background:#fff;color:var(--navy)}
+
+/* section frame */
+.section{padding-block:clamp(56px,8vw,90px)}
+.section.alt{background:var(--alt)}
+.sec-title{text-align:center;margin-bottom:clamp(32px,5vw,52px)}
+.sec-title h2{font-size:clamp(26px,3.4vw,34px);font-weight:700}
+.sec-title p{font-family:var(--f-head);font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.sec-title::after{content:"";display:block;width:48px;height:3px;background:var(--teal);margin:16px auto 0}
+
+/* about */
+.about{display:grid;grid-template-columns:300px minmax(0,1fr);gap:clamp(28px,5vw,60px);align-items:start}
+@media (max-width:820px){.about{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--line);box-shadow:0 6px 24px rgba(19,40,63,.07);padding:30px 24px;text-align:center}
+.avatar{display:block;width:150px;height:150px;border-radius:50%;margin:0 auto 18px;object-fit:cover;border:4px solid #fff;box-shadow:0 0 0 2px var(--teal)}
+.card h3{font-size:20px}
+.card .deg{color:var(--muted);font-size:15px;margin-top:6px;line-height:1.5}
+.card .mail{margin-top:16px;font-size:14px;word-break:break-all}
+.copy{margin-top:8px;font:600 11.5px var(--f-head);letter-spacing:.08em;text-transform:uppercase;background:none;border:1px solid var(--line);color:var(--muted);padding:6px 10px;cursor:pointer}
+.copy:hover{border-color:var(--teal);color:var(--teal-dark)}
+.social{display:flex;justify-content:center;gap:12px;margin-top:18px}
+.social a{width:38px;height:38px;border-radius:50%;background:var(--navy);display:grid;place-items:center}
+.social a:hover{background:var(--teal)}
+.social svg{width:17px;height:17px;fill:#fff}
+.about-text h3{font-size:24px}
+.about-text .kicker{font-family:var(--f-head);font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal-dark);margin-bottom:8px}
+.about-text p{margin-top:14px;max-width:62ch}
+.about-text p b{color:var(--navy);font-family:var(--f-head);font-size:15px}
+.bring{margin:10px 0 0;padding-left:20px;display:grid;gap:10px;max-width:64ch}
+.bring b{color:var(--navy)}
+.seeking{margin-top:28px;background:var(--alt);border-left:4px solid var(--teal);padding:18px 20px;font-size:16.5px;max-width:64ch}
+.seeking b{font-family:var(--f-head);color:var(--navy)}
+.seeking a{font-family:var(--f-head);font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;white-space:nowrap;margin-left:6px}
+.quick{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:28px}
+@media (max-width:560px){.quick{grid-template-columns:1fr}}
+.quick div{border-top:3px solid var(--teal);padding-top:10px}
+.quick b{display:block;font-family:var(--f-head);font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--navy)}
+.quick span{font-size:15px;color:var(--muted)}
+
+/* project grid */
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+@media (max-width:960px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.grid{grid-template-columns:1fr}}
+.pcard{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);text-decoration:none;color:inherit;transition:box-shadow .2s,transform .2s}
+.pcard:hover{box-shadow:0 10px 30px rgba(19,40,63,.12);transform:translateY(-3px)}
+@media (prefers-reduced-motion: reduce){.pcard{transition:none}.pcard:hover{transform:none}}
+.thumb{aspect-ratio:4/3;max-width:100%;background:#fff;border-bottom:1px solid var(--line);display:grid;place-items:center;padding:14px;overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:contain}
+.pbody{padding:28px 26px 24px;display:flex;flex-direction:column;flex:1;border-top:3px solid var(--teal)}
+.cat{font-family:var(--f-head);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-dark)}
+.pcard h3{font-size:19px}
+.pcard p{font-size:15.5px;color:var(--muted);margin-top:12px;flex:1}
+.more{font-family:var(--f-head);font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);margin-top:16px}
+.pcard:hover .more{color:var(--teal)}
+
+/* timeline lists */
+.tl{display:grid;gap:0}
+.tl-row{display:grid;grid-template-columns:190px minmax(0,1fr);gap:28px;padding-block:24px;border-bottom:1px solid var(--line)}
+.tl-row:last-child{border-bottom:0}
+@media (max-width:640px){.tl-row{grid-template-columns:1fr;gap:6px}}
+.tl-date{font-family:var(--f-head);font-size:14px;font-weight:600;color:var(--teal-dark)}
+.tl-row h3{font-size:19px}
+.tl-row .org{color:var(--muted);margin-top:2px}
+.tl-row ul{margin:10px 0 0;padding-left:20px;display:grid;gap:6px}
+.subhead{font-family:var(--f-head);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:44px 0 6px}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+@media (max-width:900px){.skills{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.skills{grid-template-columns:1fr}}
+.skill{background:#fff;border:1px solid var(--line);padding:24px}
+.skill h3{font-size:15px;letter-spacing:.06em;text-transform:uppercase}
+.skill p{margin-top:10px;font-size:15px;color:var(--muted)}
+.used{font-size:14px;margin-top:10px;color:var(--muted)}
+.skill .used{border-top:1px solid var(--line);padding-top:10px;margin-top:14px;color:var(--ink)}
+.used a{font-weight:700;text-decoration:none}
+.used a:hover{text-decoration:underline}
+
+/* contact band */
+.band{background:var(--band);color:#e5edf2;text-align:center;padding-block:clamp(56px,8vw,84px)}
+.band h2{color:#fff;font-size:clamp(26px,3.4vw,34px)}
+.band p{margin-top:12px;color:#c7d4dc}
+.band .mail{display:inline-flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px;margin-top:22px;font-size:17px;color:#fff}
+.band .copy{margin-top:0;color:#c7d4dc;border-color:#3a5470}
+.band .social a{background:#2b4766}
+.band .social a:hover{background:var(--teal)}
+footer{background:#0e1f31;color:#8fa3b2;text-align:center;font-size:13px;padding-block:18px}
+
+/* project pages */
+.page-hero{background:var(--alt);border-bottom:1px solid var(--line);padding-block:clamp(36px,6vw,60px)}
+.back{font-family:var(--f-head);font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none}
+.back:hover{color:var(--teal-dark)}
+.page-hero h1{font-size:clamp(28px,4vw,40px);margin-top:22px}
+.page-hero .lead{font-size:18.5px;color:var(--muted);margin-top:14px;max-width:62ch}
+.page-body{padding-block:clamp(36px,6vw,56px)}
+.details{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;border:1px solid var(--line);padding:20px 22px;margin-bottom:36px}
+@media (max-width:720px){.details{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.details dt{font-family:var(--f-head);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.details dd{margin:4px 0 0;font-size:15px;line-height:1.5}
+.page-body figure{margin:0 0 34px}
+.page-body figure img{display:block;width:100%;height:auto;border:1px solid var(--line);background:#fff;padding:12px}
+.page-body figcaption{font-size:14px;color:var(--muted);margin-top:10px;font-style:italic}
+.page-body h2{font-size:22px;margin:38px 0 12px}
+.page-body h2:first-of-type{margin-top:0}
+.page-body p+p{margin-top:14px}
+.page-body ul{margin:12px 0 0;padding-left:22px;display:grid;gap:8px}
+.nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:24px 0 8px}
+@media (max-width:560px){.nums{grid-template-columns:1fr}}
+.nums div{background:var(--alt);padding:16px 18px;border-left:3px solid var(--teal)}
+.nums b{display:block;font-family:var(--f-head);font-size:24px;color:var(--navy);font-variant-numeric:tabular-nums}
+.nums span{font-size:14px;color:var(--muted)}
+.tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.tools span{font-size:13.5px;background:var(--alt);border:1px solid var(--line);padding:4px 10px;border-radius:20px}
+.btn{display:inline-block;margin-top:22px;font-family:var(--f-head);font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--navy);color:#fff;padding:12px 22px;text-decoration:none}
+.btn:hover{background:var(--teal-dark)}
+.pager{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:48px;padding-top:22px}
+.pager a{font-family:var(--f-head);font-size:13px;font-weight:600;color:var(--navy);text-decoration:none}
+.pager a:hover{color:var(--teal-dark)}
+table.simple{width:100%;border-collapse:collapse;font-size:15px;margin-top:14px;font-variant-numeric:tabular-nums}
+.simple th,.simple td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line)}
+.simple th{font-family:var(--f-head);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.tablewrap{overflow-x:auto}
+</style>
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container">
+    <a class="logo" href="#top">Gautami Deshpande</a>
+    <ul class="menu">
+      <li class="hide-sm"><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li class="hide-xs"><a href="#experience">Experience</a></li>
+      <li class="hide-sm"><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- ================= HOME ================= -->
+<div id="home">
+  <section class="hero" id="top">
+    <div class="container">
+      <p class="hello">Hello, I'm</p>
+      <h1>Gautami Deshpande</h1>
+      <p class="roles">Bioinformatics<span>|</span>Statistical Genetics<span>|</span>Functional Genomics<span>|</span>Machine Learning</p>
+      <a class="cta" href="#projects">View my work</a>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="container">
+      <div class="sec-title"><h2>About</h2><p>What I do</p></div>
+      <div class="about">
+        <div class="card">
+          <img class="avatar" src="photo.jpg" alt="Gautami Deshpande">
+          <h3>Gautami Deshpande</h3>
+          <p class="deg">M.S. Bioinformatics Data Science<br>University of Delaware</p>
+          <p class="mail" id="email">gautami.deshpande1412@gmail.com</p>
+          <button class="copy" type="button" data-copy>Copy email</button>
+          <div class="social">
+            <a href="https://www.linkedin.com/in/gautamideshpande14/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 16 16"><path d="M0 1.15C0 .52.53 0 1.18 0h13.64C15.47 0 16 .52 16 1.15v13.7c0 .63-.53 1.15-1.18 1.15H1.18C.53 16 0 15.48 0 14.85V1.15zm4.94 12.24V6.17H2.54v7.22h2.4zM3.74 5.18c.84 0 1.36-.55 1.36-1.25-.02-.71-.52-1.25-1.34-1.25-.82 0-1.36.54-1.36 1.25 0 .7.52 1.25 1.33 1.25h.01zm4.91 8.21V9.36c0-.22.02-.43.08-.59.17-.43.57-.88 1.23-.88.87 0 1.22.66 1.22 1.64v3.86h2.4V9.25c0-2.22-1.18-3.25-2.76-3.25-1.27 0-1.84.7-2.16 1.19v.03h-.02l.02-.03V6.17h-2.4c.03.68 0 7.22 0 7.22h2.4z"/></svg></a>
+            <a href="https://github.com/Gautami1412" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+          </div>
+        </div>
+        <div class="about-text">
+          <p class="kicker">Bioinformatics data scientist</p>
+          <h3>Turning genomic and clinical data into biological answers</h3>
+          <p>I take raw biological data, from GWAS summary statistics and sequencing reads to clinical cohorts, and turn it into findings a team can act on. That means building the pipeline, choosing the right statistics, and explaining what the result means biologically.</p>
+          <p><b>What I bring to a team:</b></p>
+          <ul class="bring">
+            <li><b>End-to-end analysis.</b> I've worked through QC, alignment, variant calling, differential expression and multi-omics integration, so I can own an analysis from raw files to figures.</li>
+            <li><b>The right model for the question.</b> I've used mixed-effects models, regularized regression and machine learning with SHAP, and I'm careful about confounders, class imbalance and data leakage.</li>
+            <li><b>Reproducible work.</b> My analyses run as scripts and workflows (Snakemake, Docker, HPC, AWS) that someone else can rerun and get the same numbers.</li>
+            <li><b>Biology and computation together.</b> My background is in biochemistry and wet-lab assays, so I can talk with bench scientists and translate results back into biology.</li>
+          </ul>
+          <div class="seeking"><b>Open to roles</b> as a Bioinformatics Analyst, Computational Biologist or Bioinformatics Data Scientist, in research, biotech or clinical genomics. <a href="#contact">Get in touch →</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="projects">
+    <div class="container">
+      <div class="sec-title"><h2>Projects</h2><p>What I've worked on</p></div>
+      <div class="grid">
+        <a class="pcard" href="#gwas"><div class="pbody"><h3>Shared genetics of heart disease and rheumatoid arthritis</h3><p>Integrating GWAS, ChIP-seq and eQTL data to find the genetic variants shared by coronary artery disease and rheumatoid arthritis, and the gene they act through.</p><span class="more">Read more →</span></div></a>
+        <a class="pcard" href="#mtdna"><div class="pbody"><h3>Mitochondrial DNA heteroplasmy and preterm birth</h3><p>Testing whether variation in mothers' mitochondrial DNA is linked to preterm birth and gestational age, across 8,599 mothers in Africa and South Asia.</p><span class="more">Read more →</span></div></a>
+        <a class="pcard" href="#mitonuclear"><div class="pbody"><h3>Mitonuclear ancestry mismatch and preterm birth</h3><p>Asking whether a mismatch between a mother's mitochondrial lineage and her population's ancestry raises the risk of preterm birth.</p><span class="more">Read more →</span></div></a>
+        <a class="pcard" href="#hla"><div class="pbody"><h3>HLA variant calling across ancestries</h3><p>Building a variant-calling pipeline to measure whether the standard GATK workflow is less accurate for non-European genomes in the HLA region.</p><span class="more">Read more →</span></div></a>
+        <a class="pcard" href="#leukemia"><div class="pbody"><h3>Classifying leukemia from gene expression</h3><p>Revisiting a classic 1999 study: telling two leukemia subtypes (ALL and AML) apart from gene expression with machine learning, and finding which genes drive the predictions.</p><span class="more">Read more →</span></div></a>
+        <a class="pcard" href="#rnaseq"><div class="pbody"><h3>Complement gene expression in liver vs. lymph node</h3><p>An RNA-seq analysis comparing liver and lymph node to test whether the liver is the main source of key complement-system genes.</p><span class="more">Read more →</span></div></a>
+        <a class="pcard" href="#tpo"><div class="pbody"><h3>Natural TPO inhibitors for hyperthyroidism</h3><p>Screening natural flavonoids with docking and molecular dynamics as safer alternatives to current anti-thyroid drugs.</p><span class="more">Read more →</span></div></a>
+        <a class="pcard" href="#asthma"><div class="pbody"><h3>Childhood asthma risk modeling</h3><p>Using national survey data on ~21,600 U.S. children to find which clinical, family and environmental factors predict asthma.</p><span class="more">Read more →</span></div></a>
+        <a class="pcard" href="#mimic"><div class="pbody"><h3>ICU mortality in MIMIC-III</h3><p>A team project reproducing a published ICU study on the MIMIC-III clinical database, then adding a model to predict in-hospital mortality.</p><span class="more">Read more →</span></div></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="experience">
+    <div class="container narrow">
+      <div class="sec-title"><h2>Experience</h2><p>Where I've worked</p></div>
+      <div class="tl">
+        <div class="tl-row">
+          <div class="tl-date">Jun 2025 – May 2026</div>
+          <div>
+            <h3>Bioinformatics Research Intern</h3>
+            <p class="org">Children's Hospital of Philadelphia, Philadelphia, PA · Advisors: Jeff Haltom, Douglas C. Wallace</p>
+            <ul>
+              <li>Built reproducible HPC pipelines in Python, R and Bash to clean and harmonize data from 8,599 mothers across five study sites in Africa and South Asia.</li>
+              <li>Found that mothers with a matched African mtDNA lineage had 69% lower odds of preterm birth than carriers of a distant lineage (OR 0.31, p = 0.016).</li>
+              <li>Showed that mitochondrial heteroplasmy carries a modest preterm-birth signal that only appears once study site is modeled as a random effect.</li>
+            </ul>
+            <p class="used">Projects: <a href="#mtdna">mtDNA heteroplasmy and preterm birth</a> · <a href="#mitonuclear">Mitonuclear ancestry mismatch</a></p>
+          </div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-date">Jun 2022 – Oct 2022</div>
+          <div>
+            <h3>Research Intern</h3>
+            <p class="org">P.D. Hinduja Hospital and Medical Research Center, Mumbai · Advisor: Dr. Alpa Dherai</p>
+            <ul>
+              <li>Validated a serum protein biomarker against clinical readouts using sandwich ELISA and nonparametric statistics.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <p class="subhead">Presentations</p>
+      <div class="tl">
+        <div class="tl-row">
+          <div class="tl-date">May 2026</div>
+          <div><h3>mtDNA Heteroplasmy and Preterm Birth Outcomes in South Asian and African Populations</h3><p class="org">Poster · Deshpande G., Haltom J., Wallace D. · University of Delaware</p></div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-date">Feb 2026</div>
+          <div><h3>Mitonuclear Ancestry Divergence and Preterm Birth Risk in African and South Asian Cohorts</h3><p class="org">Oral presentation · Bioinformatics Seminar Series, University of Delaware</p></div>
+        </div>
+      </div>
+
+      <p class="subhead" id="education">Education</p>
+      <div class="tl">
+        <div class="tl-row"><div class="tl-date">May 2026</div><div><h3>M.S. Bioinformatics Data Science</h3><p class="org">University of Delaware, Newark, DE · GPA 3.9</p></div></div>
+        <div class="tl-row"><div class="tl-date">May 2024</div><div><h3>Post Graduate Diploma in Bioinformatics</h3><p class="org">St. Xavier's College, Mumbai · GPA 3.62</p></div></div>
+        <div class="tl-row"><div class="tl-date">Jun 2023</div><div><h3>M.S. and B.S. Biochemistry</h3><p class="org">University of Mumbai · GPA 3.81 (M.S.), 3.77 (B.S.)</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="skills">
+    <div class="container">
+      <div class="sec-title"><h2>Skills</h2><p>What I bring to the table</p></div>
+      <div class="skills">
+        <div class="skill"><h3>Genomics and NGS</h3><p>GWAS, ChIP-seq, eQTL analysis, RNA-seq, variant calling, mtDNA haplogroups. bedtools, BWA-MEM, GATK4, STAR, HISAT2, featureCounts, DESeq2, edgeR</p><p class="used">Used in: <a href="#gwas">CAD–RA genetics</a> · <a href="#rnaseq">RNA-seq</a> · <a href="#hla">HLA pipeline</a> · <a href="#mitonuclear">Mitonuclear mismatch</a></p></div>
+        <div class="skill"><h3>Statistics and ML</h3><p>Logistic and linear regression, mixed-effects models, LASSO, Random Forest, XGBoost, PCA, UMAP, cross-validation, ROC-AUC, SHAP</p><p class="used">Used in: <a href="#mtdna">mtDNA heteroplasmy</a> · <a href="#leukemia">Leukemia</a> · <a href="#asthma">Asthma</a> · <a href="#mimic">MIMIC-III</a></p></div>
+        <div class="skill"><h3>Pipelines and compute</h3><p>Snakemake, Docker, HPC batch jobs, AWS. Currently learning Nextflow and GCP.</p><p class="used">Used in: <a href="#hla">HLA pipeline</a> · <a href="#rnaseq">RNA-seq</a> · <a href="#mtdna">mtDNA heteroplasmy</a></p></div>
+        <div class="skill"><h3>Programming</h3><p>Python, R, Bash / Linux, SQL, Git and GitHub</p><p class="used">Used in: every project. SQL in <a href="#mimic">MIMIC-III</a>, Bash in <a href="#gwas">CAD–RA genetics</a></p></div>
+        <div class="skill"><h3>Structural biology</h3><p>Homology modeling, molecular docking, MD simulation. SwissModel, AutoDock Vina, Desmond, ChimeraX, PyMOL</p><p class="used">Used in: <a href="#tpo">TPO inhibitors</a></p></div>
+        <div class="skill"><h3>Data and visualization</h3><p>pandas, matplotlib, ggplot2, Jupyter, R Markdown</p><p class="used">Used in: <a href="#asthma">Asthma</a> · <a href="#mtdna">mtDNA heteroplasmy</a> · <a href="#leukemia">Leukemia</a></p></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= PROJECT PAGES ================= -->
+
+<article class="page" id="gwas" hidden>
+  <div class="page-hero"><div class="container narrow">
+    <a class="back" href="#projects">← All projects</a>
+    
+    <h1>Shared genetic architecture of coronary artery disease and rheumatoid arthritis</h1>
+    <p class="lead">People with rheumatoid arthritis are more likely to develop heart disease. I wanted to know whether the two diseases share a genetic basis, and what that shared signal is doing at the molecular level.</p>
+  </div></div>
+  <div class="page-body"><div class="container narrow">
+    <dl class="details">
+      <div><dt>Type</dt><dd>Independent project</dd></div>
+      <div><dt>Data</dt><dd>GWAS Catalog, ENCODE, eQTLGen</dd></div>
+      <div><dt>Genome build</dt><dd>GRCh37 / hg19</dd></div>
+      <div><dt>Code</dt><dd><a href="https://github.com/Gautami1412/GWAS-ChIPseq-CAD-RA-MultiOmics" target="_blank" rel="noopener">GitHub ↗</a></dd></div>
+    </dl>
+    <figure><img src="fig1_filtering_funnel.png" alt="Filtering funnel from 18,349 CAD and 35,227 RA variants down to 3 validated HLA-C cis-eQTLs"><figcaption>Each step adds a separate line of evidence: association with both diseases, location inside a gene, active chromatin in the relevant immune cells, and a measured effect on gene expression.</figcaption></figure>
+
+    <h2>What I did</h2>
+    <p>I started from two large public GWAS: coronary artery disease (Aragam et al. 2022, over a million people) and rheumatoid arthritis (Ishigaki et al. 2022, five ancestry groups). Filtering both at genome-wide significance (p &lt; 5×10⁻⁸) gave 18,349 CAD and 35,227 RA variants, and 160 of them were significant in both diseases.</p>
+    <p>I mapped those 160 SNPs to their nearest genes with bedtools, which left 38 SNPs sitting directly inside a gene. Next I asked whether those SNPs fall on "switched-on" DNA. I used H3K27ac ChIP-seq from ENCODE for two cell types: CD4+ T cells, which attack joint tissue in RA, and CD14+ monocytes, which become the cells that build arterial plaque in CAD. 15 SNPs were active in both. Finally, I checked those 15 against eQTLGen (31,684 blood samples) to see which ones actually change how much a gene is expressed.</p>
+    <p>The whole analysis runs as eight numbered Bash scripts using awk, sort, comm, grep and bedtools, so it can be rerun from scratch and give the same numbers.</p>
+
+    <h2>What I found</h2>
+    <div class="nums"><div><b>160</b><span>SNPs shared by both diseases</span></div><div><b>15</b><span>active in both immune cell types</span></div><div><b>3</b><span>validated eQTLs, all for HLA-C</span></div></div>
+    <p>The shared SNPs piled up in the HLA region on chromosome 6 (HLA-B, HLA-DRB1, HLA-DQA1, HLA-A), the immune system's control center. By the end of the funnel, all three validated variants regulate the same gene, <b>HLA-C</b>. The strongest, rs9266196, has a Z-score of about 47.6.</p>
+    <p>Going from 53,000 variants to three that tell the same story suggests the overlap between RA and CAD is a specific immune-regulatory signal, not noise. It points to a shared genetic root, rather than RA simply causing heart disease through years of inflammation.</p>
+    <figure><img src="fig3_eqtl_zscores.png" alt="eQTL Z-scores of the three validated SNPs for HLA-C"><figcaption>Effect of the three final SNPs on HLA-C expression in eQTLGen.</figcaption></figure>
+
+    <h2>Limitations and next steps</h2>
+    <ul>
+      <li>The nearest gene is not always the causal gene. The eQTL step is there to add real evidence, but it doesn't settle it.</li>
+      <li>This is a strong chain of evidence, not proof. Showing causation would take an experiment, such as editing the SNP in cells and measuring HLA-C.</li>
+      <li>I didn't stratify by ancestry. Next I'd test each ancestry group separately and add more cell types and tissues.</li>
+    </ul>
+    <div class="tools"><span>Bash</span><span>awk</span><span>bedtools</span><span>GWAS Catalog</span><span>ENCODE</span><span>eQTLGen</span><span>UCSC RefGene</span></div>
+    <div class="pager"><a href="#projects">← All projects</a><a href="#mtdna">Next: mtDNA heteroplasmy →</a></div>
+  </div></div>
+</article>
+
+<article class="page" id="mtdna" hidden>
+  <div class="page-hero"><div class="container narrow">
+    <a class="back" href="#projects">← All projects</a>
+    
+    <h1>Mitochondrial DNA heteroplasmy and preterm birth risk</h1>
+    <p class="lead">Heteroplasmy means carrying a mix of slightly different mitochondrial DNA copies in your own cells. The placenta is extremely energy-hungry, so I asked whether this variation in mothers relates to preterm birth or gestational age.</p>
+  </div></div>
+  <div class="page-body"><div class="container narrow">
+    <dl class="details">
+      <div><dt>Where</dt><dd>Children's Hospital of Philadelphia, Wallace Lab</dd></div>
+      <div><dt>Data</dt><dd>8,599 mothers, 5 sites in Africa and South Asia</dd></div>
+      <div><dt>Outcomes</dt><dd>Preterm birth, gestational age</dd></div>
+      <div><dt>Code</dt><dd><a href="https://github.com/Gautami1412/mtDNA-Heteroplasmy-Analysis-Preterm-Birth-and-Gestational-Age" target="_blank" rel="noopener">GitHub ↗</a></dd></div>
+    </dl>
+    <figure><img src="mtdna_shap.png" alt="SHAP summary plot ranking site, mtDNA principal components, BMI and maternal age"><figcaption>SHAP summary for the Random Forest model. Site ranks highest, but several mtDNA components still move predictions on their own.</figcaption></figure>
+
+    <h2>What I did</h2>
+    <p>Each mother had 126 heteroplasmy variants measured, plus age and BMI. Because many variants are correlated, I compressed them with PCA into 14 components that keep about 80% of the variation. I tested those components with logistic regression (preterm birth) and linear regression (gestational age), with FDR correction.</p>
+    <p>The key step was a mixed-effects model. Site turned out to be a huge predictor on its own, with some sites at 2–3 times the preterm-birth rate. A normal regression lets site soak up almost all the explanatory power. Treating site as a random effect separates differences between sites from differences between mothers at the same site, so a smaller biological signal can show through. I also trained a Random Forest with 5-fold cross-validation and used SHAP to see which features it relied on.</p>
+
+    <h2>What I found</h2>
+    <div class="nums"><div><b>126 → 14</b><span>variants compressed to PCs</span></div><div><b>4</b><span>mtDNA components significant in the mixed model</span></div><div><b>0.62</b><span>Random Forest AUC, combined cohort</span></div></div>
+    <p>With site as a regular predictor, the Bangladesh and Pakistan sites showed 2.3–2.6 times higher odds of preterm birth and no mtDNA feature survived correction. With site as a random effect, four mtDNA components (PC1, PC5, PC11 and PC14) came out significant, along with maternal age. Testing all 125 raw variants one at a time didn't find anything the components had missed.</p>
+    <p>So heteroplasmy carries a real but modest signal. It's one contributing factor, not a standalone predictor, and how you model site decides whether you can see it at all.</p>
+
+    <h2>Limitations</h2>
+    <ul>
+      <li>Only 609 preterm cases out of 8,599, so PR-AUC was low (0.088) even though ROC-AUC was 0.62.</li>
+      <li>In the African subcohort alone, AUC fell to 0.50. Part of the combined model's performance comes from learning which cohort a mother is in.</li>
+    </ul>
+    <div class="tools"><span>Python</span><span>pandas</span><span>statsmodels</span><span>scikit-learn</span><span>SHAP</span><span>HPC</span></div>
+    <div class="pager"><a href="#gwas">← Shared genetics of CAD and RA</a><a href="#mitonuclear">Next: Mitonuclear mismatch →</a></div>
+  </div></div>
+</article>
+
+<article class="page" id="mitonuclear" hidden>
+  <div class="page-hero"><div class="container narrow">
+    <a class="back" href="#projects">← All projects</a>
+    
+    <h1>Mitonuclear ancestry mismatch and preterm birth</h1>
+    <p class="lead">Mitochondrial and nuclear genes evolved together and need to cooperate. Building on Crawford et al. (2018), I tested whether mothers whose mtDNA lineage doesn't match their population's ancestry have higher preterm-birth risk.</p>
+  </div></div>
+  <div class="page-body"><div class="container narrow">
+    <dl class="details">
+      <div><dt>Where</dt><dd>Children's Hospital of Philadelphia, Wallace Lab</dd></div>
+      <div><dt>Data</dt><dd>African and South Asian maternal cohorts</dd></div>
+      <div><dt>Methods</dt><dd>Chi-square, Fisher's exact, logistic regression</dd></div>
+      <div><dt>Presented</dt><dd>UD seminar, Feb 2026</dd></div>
+    </dl>
+    <figure><img src="mitonuclear_or.png" alt="Odds ratio 0.31, 95% CI 0.12 to 0.81, for L versus M; L versus E not significant"><figcaption>Only the most distant mismatch was associated with preterm birth. The M group is small, which is why the interval is wide.</figcaption></figure>
+
+    <h2>What I did</h2>
+    <p>Each mother's mtDNA haplogroup was grouped into one of five ancestral clusters (African, South Asian, East Asian and so on). I then scored whether her lineage matched the ancestry expected for her population. Because this was a direct hypothesis test rather than a prediction task, I used classical statistics: chi-square and Fisher's exact tests for the association, logistic regression for adjusted odds ratios, and Welch's t-test and OLS for gestational age.</p>
+
+    <h2>What I found</h2>
+    <p>In the African cohort, mothers with the matched African lineage (L) had 69% lower odds of preterm birth than mothers carrying the distant M lineage (OR 0.31, 95% CI 0.12–0.81, p = 0.016). A closer mismatch, the E lineage, showed no effect. In the South Asian cohort, where lineages are genetically closer after a long history of mixing, none of the comparisons were significant.</p>
+    <p>That pattern suggests the effect scales with how far apart the two ancestries are, not just whether they differ. It agrees with the original paper, whose result also replicated in only one of two cohorts, and it extends the question to a population that paper never tested.</p>
+
+    <h2>Limitations and next steps</h2>
+    <ul>
+      <li>Only 41 mothers carried the M lineage, so the result needs replication in a larger sample.</li>
+      <li>Socioeconomic factors and healthcare access weren't modeled directly, and they can correlate with ancestry.</li>
+      <li>A continuous, genotype-based ancestry-distance score would sharpen the analysis.</li>
+    </ul>
+    <div class="tools"><span>Python</span><span>SciPy</span><span>statsmodels</span><span>mtDNA haplogroups</span></div>
+    <div class="pager"><a href="#mtdna">← mtDNA heteroplasmy</a><a href="#hla">Next: HLA variant calling →</a></div>
+  </div></div>
+</article>
+
+<article class="page" id="hla" hidden>
+  <div class="page-hero"><div class="container narrow">
+    <a class="back" href="#projects">← All projects</a>
+    
+    <h1>Multi-ancestry HLA variant calling: benchmarking reference genome bias</h1>
+    <p class="lead">Does GATK's industry-standard pipeline call variants equally well across ancestries in HLA, the most diverse and most reference-biased part of the genome? HLA drives transplant matching, autoimmune risk and drug reactions, so accuracy gaps there matter clinically.</p>
+  </div></div>
+  <div class="page-body"><div class="container narrow">
+    <dl class="details">
+      <div><dt>Status</dt><dd>Pipeline built; compute running on AWS</dd></div>
+      <div><dt>Samples</dt><dd>12 from 1000 Genomes + 3 GIAB</dd></div>
+      <div><dt>Region</dt><dd>chr6:28.5–33.5 Mb (GRCh38)</dd></div>
+      <div><dt>Code</dt><dd><a href="https://github.com/Gautami1412/hla-multi-ancestry-pipeline" target="_blank" rel="noopener">GitHub ↗</a></dd></div>
+    </dl>
+    <figure><img src="hla_pipeline.png" alt="Eight-stage pipeline from region extraction to benchmarking"><figcaption>The eight stages, following GATK Best Practices and orchestrated with Snakemake.</figcaption></figure>
+
+    <h2>Design</h2>
+    <p>The cohort is 12 samples from 1000 Genomes across four ancestry groups (African, European, South Asian and East Asian), plus three Genome in a Bottle samples (HG001, HG002, HG005) that have hand-curated truth sets to score accuracy against. I slice the extended HLA region (chr6:28,510,120–33,480,577) out of each sample's aligned CRAM and run it through the full pipeline, at about 1/500th the size of a whole genome.</p>
+    <p>Reads are aligned to the full GRCh38 reference with decoy sequences, not an HLA-only reference. HLA genes look so alike that a small reference would misplace reads, which would undermine the benchmark. I use hard filters instead of VQSR because 15 samples is too few for VQSR to train on.</p>
+
+    <h2>What I expect to find</h2>
+    <ul>
+      <li><b>An accuracy gap between European and East Asian genomes.</b> GRCh38 is built mostly from European-ancestry data, so I expect lower precision and recall for HG005 than HG001.</li>
+      <li><b>A structural gap for African and South Asian genomes.</b> No GIAB truth set exists for these ancestries, so their calls can't be benchmarked at all. That missing resource is a finding in itself.</li>
+    </ul>
+
+    <h2>Where it stands</h2>
+    <p>The full pipeline is written and passes a Snakemake dry run end to end. All reference data and all 15 samples are downloaded and indexed. Alignment needs more memory than my laptop has, so I'm moving the compute-heavy stages to AWS with Docker. There are no results yet.</p>
+    <div class="tools"><span>Snakemake</span><span>BWA-MEM</span><span>GATK4</span><span>hap.py</span><span>FastQC</span><span>fastp</span><span>Docker</span><span>AWS Batch</span></div>
+    <div class="pager"><a href="#mitonuclear">← Mitonuclear mismatch</a><a href="#leukemia">Next: Leukemia classification →</a></div>
+  </div></div>
+</article>
+
+<article class="page" id="leukemia" hidden>
+  <div class="page-hero"><div class="container narrow">
+    <a class="back" href="#projects">← All projects</a>
+    
+    <h1>Molecular classification of leukemia from gene expression</h1>
+    <p class="lead">ALL and AML look alike under the microscope but need very different treatment. In 1999, Golub and colleagues showed they could be told apart from gene expression alone. I reproduced that result with modern machine learning and added SHAP to see which genes drive the predictions.</p>
+  </div></div>
+  <div class="page-body"><div class="container narrow">
+    <dl class="details">
+      <div><dt>Type</dt><dd>Course final project</dd></div>
+      <div><dt>Data</dt><dd>Golub et al. 1999 (Kaggle), 72 patients</dd></div>
+      <div><dt>Features</dt><dd>7,129 genes (Affymetrix)</dd></div>
+      <div><dt>Split</dt><dd>38 train / 34 test, as in the original</dd></div>
+    </dl>
+    <figure><img src="leukemia_accuracy.png" alt="Test-set accuracy: logistic regression and XGBoost 94.1%, MLP and Random Forest 85%, SVM about 65%"><figcaption>Accuracy on the 34 held-out patients. The dashed line is the original study's result.</figcaption></figure>
+
+    <h2>What I did</h2>
+    <p>I log₂-transformed the expression values, kept the 5,000 most variable genes and standard-scaled them. Every preprocessing step was fit on the training set only, to avoid leakage. PCA, UMAP and t-SNE all showed ALL and AML as clearly separate groups before any labels were used.</p>
+    <p>I trained five classifiers covering a range of complexity: L2 logistic regression, Random Forest, an RBF-kernel SVM, XGBoost and a shallow neural network. I compared them with stratified 5-fold cross-validation, then evaluated each one once on the untouched test set. Finally, I ran SHAP on XGBoost to rank genes by their contribution.</p>
+
+    <h2>What I found</h2>
+    <div class="nums"><div><b>94.1%</b><span>test accuracy, logistic regression and XGBoost</span></div><div><b>&gt; 0.96</b><span>AUC for every model</span></div><div><b>3 of 5</b><span>top SHAP genes also in Golub's signature</span></div></div>
+    <p>Logistic regression and XGBoost each misclassified only two of 34 patients (F1 ≈ 0.93, AUC ≈ 0.98). Logistic regression was the weakest model in cross-validation, because each fold had too few samples, but it tied for best once trained on all 38. Random Forest ranked every patient correctly (AUC 1.00), but the default 0.5 threshold cost it five AML cases.</p>
+    <p>The top SHAP genes were ZYX, FAH, CST3, CHRNA7 and PTX3. Zyxin was also the highest-weighted gene in Golub's hand-picked 50-gene signature, and FAH and CST3 appear in it too. So the model is relying on biologically meaningful genes. Golub reported about 85% accuracy and declined to predict five uncertain cases; the best models here reach 94% with no abstentions.</p>
+
+    <h2>Limitations</h2>
+    <ul>
+      <li>With 34 test patients, these accuracy figures carry real statistical uncertainty.</li>
+      <li>A clinical tool would need to flag cases it's unsure about for review, rather than always returning ALL or AML.</li>
+    </ul>
+    <div class="tools"><span>Python</span><span>scikit-learn</span><span>XGBoost</span><span>SHAP</span><span>UMAP</span><span>t-SNE</span></div>
+    <div class="pager"><a href="#hla">← HLA variant calling</a><a href="#rnaseq">Next: RNA-seq, liver vs. lymph node →</a></div>
+  </div></div>
+</article>
+
+<article class="page" id="rnaseq" hidden>
+  <div class="page-hero"><div class="container narrow">
+    <a class="back" href="#projects">← All projects</a>
+    
+    <h1>Tissue-specific complement gene expression: liver vs. lymph node</h1>
+    <p class="lead">I tested whether the liver is the main production site for the terminal complement components (C8A, C8B, C9) and the factor H-related regulators (CFHR2–5). Lymph node was the comparison because it's where complement gets used rather than made.</p>
+  </div></div>
+  <div class="page-body"><div class="container narrow">
+    <dl class="details">
+      <div><dt>Type</dt><dd>Course project</dd></div>
+      <div><dt>Data</dt><dd>Human Protein Atlas, 3 liver + 3 lymph node</dd></div>
+      <div><dt>Reads</dt><dd>Single-end bulk RNA-seq</dd></div>
+      <div><dt>Compute</dt><dd>BioMix HPC cluster</dd></div>
+    </dl>
+    <figure><img src="rnaseq_de.png" alt="4,502 genes higher in liver and 4,256 higher in lymph node at FDR below 0.05"><figcaption>Differentially expressed genes between the two tissues (edgeR exact test, FDR &lt; 0.05).</figcaption></figure>
+
+    <h2>What I did</h2>
+    <p>I ran the full pipeline on the cluster as batch jobs, one script per stage with a loop over the six samples: FastQC for quality control, TrimGalore for trimming, alignment with both STAR and HISAT2 as a cross-check, and featureCounts for quantification. Both aligners mapped over 95% of reads.</p>
+    <p>For differential expression I used both DESeq2 and edgeR, since they normalize and test differently and agreement between them is reassuring. DESeq2 gave the final significance calls, and edgeR's top 200 genes went into Enrichr for pathway enrichment and STRING with MCODE for network analysis.</p>
+
+    <h2>What I found</h2>
+    <div class="nums"><div><b>98%</b><span>of variance on PC1, separating the tissues</span></div><div><b>7 of 7</b><span>complement genes higher in liver</span></div><div><b>3.25×10⁻²³</b><span>adj. p, complement and coagulation cascades</span></div></div>
+    <p>All seven complement genes were significantly higher in liver. The stronger evidence came without looking for them: complement and coagulation cascades was the single most enriched KEGG pathway (22 of 85 genes). In STRING, all seven genes formed one MCODE cluster in which every gene connects to all six others. The top differentially expressed genes overall were classic liver markers: APOH, ALDOB, FGG, APOB and PLG.</p>
+
+    <h2>Limitations</h2>
+    <ul>
+      <li>Three samples per tissue is small. The effect is large enough to survive that, but more replicates would help.</li>
+      <li>This is bulk tissue. Liver is mostly hepatocytes and lymph node mostly lymphocytes, so I can't separate regulation from cell composition. Single-cell or single-nucleus data would.</li>
+      <li>Some log₂ fold changes near −16 reflect genes that are essentially absent in lymph node, not a smoothly measured effect.</li>
+      <li>The finding confirms known biology. The real aim was to build and validate the pipeline, and the biology was the check that it worked.</li>
+    </ul>
+    <div class="tools"><span>FastQC</span><span>TrimGalore</span><span>STAR</span><span>HISAT2</span><span>featureCounts</span><span>DESeq2</span><span>edgeR</span><span>Enrichr</span><span>STRING</span><span>MCODE</span></div>
+    <div class="pager"><a href="#leukemia">← Leukemia classification</a><a href="#tpo">Next: TPO inhibitors →</a></div>
+  </div></div>
+</article>
+
+<article class="page" id="tpo" hidden>
+  <div class="page-hero"><div class="container narrow">
+    <a class="back" href="#projects">← All projects</a>
+    
+    <h1>Natural thyroid peroxidase inhibitors for hyperthyroidism</h1>
+    <p class="lead">Drugs like methimazole treat hyperthyroidism by inhibiting thyroid peroxidase (TPO), but they carry real toxicity. I screened natural flavonoids as potentially safer alternatives.</p>
+  </div></div>
+  <div class="page-body"><div class="container narrow">
+    <dl class="details">
+      <div><dt>Target</dt><dd>TPO, UniProt P07202 (res. 142–738)</dd></div>
+      <div><dt>Ligands</dt><dd>4 flavonoids, 4 FDA-approved drugs</dd></div>
+      <div><dt>Simulation</dt><dd>10 ns MD, 300 K</dd></div>
+      <div><dt>Code</dt><dd><a href="https://github.com/Gautami1412/TPO-Virtual-Screening-Computational-Drug-Discovery" target="_blank" rel="noopener">GitHub ↗</a></dd></div>
+    </dl>
+    <figure><img src="tpo_fig1_binding.svg" alt="Docking binding energies: flavonoids from −9.6 to −8.6, drugs from −5.6 to −3.6 kcal/mol"><figcaption>Docking binding energy. More negative means stronger binding.</figcaption></figure>
+
+    <h2>What I did</h2>
+    <p>I built a homology model of TPO's catalytic domain with SwissModel and validated it (ProSA Z-score −10.57, over 90% of residues in favored Ramachandran regions). I docked four flavonoids (Rutin, Kaempferol, Mearnsitrin and Rosmarinic acid) and four approved drugs with CB-Dock and AutoDock Vina. The top complexes went through 10 ns molecular dynamics in Desmond, and I predicted toxicity and drug-likeness with ProTox 3.0 and SwissADME.</p>
+
+    <h2>What I found</h2>
+    <div class="nums"><div><b>−9.6</b><span>kcal/mol for Rutin vs. −3.6 for methimazole</span></div><div><b>≈ 3 Å</b><span>RMSD, stable over 10 ns</span></div><div><b>5000 vs 220</b><span>predicted LD50, mg/kg</span></div></div>
+    <p>Every flavonoid bound TPO two to three times more strongly than every drug. Rutin was the lead candidate: the strongest binder, a stable complex across the simulation, and a far safer predicted toxicity profile than methimazole.</p>
+    <figure><img src="tpo_fig2_rutin_vs_drug.svg" alt="Rutin vs methimazole: binding energy and predicted LD50"><figcaption>Rutin compared with methimazole, the current standard drug.</figcaption></figure>
+
+    <h2>Limitations</h2>
+    <p>This is an in-silico study. Binding energies and toxicity are predictions, so the results generate hypotheses and would need lab validation.</p>
+    <div class="tools"><span>SwissModel</span><span>ProSA-web</span><span>AutoDock Vina</span><span>CB-Dock</span><span>Desmond</span><span>ProTox 3.0</span><span>SwissADME</span><span>ChimeraX</span><span>PyMOL</span></div>
+    <div class="pager"><a href="#rnaseq">← RNA-seq, liver vs. lymph node</a><a href="#asthma">Next: Childhood asthma →</a></div>
+  </div></div>
+</article>
+
+<article class="page" id="asthma" hidden>
+  <div class="page-hero"><div class="container narrow">
+    <a class="back" href="#projects">← All projects</a>
+    
+    <h1>Clinical and socioeconomic predictors of childhood asthma</h1>
+    <p class="lead">Asthma is one of the most common chronic diseases in U.S. children. Using national survey data, I asked which factors are associated with an asthma diagnosis, and whether simple, interpretable models do as well as machine learning.</p>
+  </div></div>
+  <div class="page-body"><div class="container narrow">
+    <dl class="details">
+      <div><dt>Data</dt><dd>2017 National Survey of Children's Health</dd></div>
+      <div><dt>Sample</dt><dd>~21,600 children aged 0–17</dd></div>
+      <div><dt>Outcome</dt><dd>Lifetime asthma diagnosis (~12%)</dd></div>
+      <div><dt>Code</dt><dd><a href="https://github.com/Gautami1412/childhood-asthma-risk-modeling" target="_blank" rel="noopener">GitHub ↗</a></dd></div>
+    </dl>
+    <figure><img src="asthma_fig1_model_auc.svg" alt="Test AUC: logistic 0.837, LASSO 0.838, Random Forest 0.814"><figcaption>Model discrimination on the held-out test set. The dashed line is the cross-validated AUC.</figcaption></figure>
+
+    <h2>What I did</h2>
+    <p>I picked 21 predictors across four levels: the child (age, sex, race, BMI class, allergies, breathing difficulties), the family (poverty ratio, household size, insurance, tobacco use, food security, mold), the community (metro status, neighborhood conditions, safety) and behavior (physical activity, sleep, screen time).</p>
+    <p>I compared three models on a 70/30 train/test split: multivariable logistic regression as an interpretable baseline, LASSO with the one-standard-error rule for a more conservative model, and Random Forest for non-linear effects. I also ran 5-fold cross-validation and checked calibration. Everything was done in R.</p>
+
+    <h2>What I found</h2>
+    <div class="nums"><div><b>0.838</b><span>AUC, LASSO (best)</span></div><div><b>0.849</b><span>5-fold cross-validated AUC</span></div><div><b>~1 in 8</b><span>children with an asthma diagnosis</span></div></div>
+    <p>LASSO and logistic regression slightly outperformed Random Forest, which suggests the signal is mostly additive. That's good news for public health, where interpretable models are easier to act on. Across all three models, recent breathing difficulties was the strongest predictor by a wide margin, followed by allergies and child age. Family poverty ratio ranked second in the Random Forest, so socioeconomic conditions matter beyond clinical symptoms.</p>
+    <figure><img src="asthma_rf_importance.png" alt="Random Forest variable importance, led by breathing difficulties, family poverty ratio and age"><figcaption>Random Forest variable importance (mean decrease in Gini).</figcaption></figure>
+    <div class="tablewrap"><table class="simple">
+      <thead><tr><th>Rank</th><th>Logistic regression</th><th>LASSO</th><th>Random Forest</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Breathing difficulties</td><td>Breathing difficulties</td><td>Breathing difficulties</td></tr>
+        <tr><td>2</td><td>Allergies</td><td>Allergies</td><td>Family poverty ratio</td></tr>
+        <tr><td>3</td><td>Child age</td><td>Child age</td><td>Child age</td></tr>
+        <tr><td>4</td><td>Physical activity</td><td>Physical activity</td><td>Screen time</td></tr>
+        <tr><td>5</td><td>Sleep duration</td><td>—</td><td>Sleep duration</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2>Limitations and next steps</h2>
+    <ul>
+      <li>Survey weights weren't applied, so results describe this sample rather than national prevalence.</li>
+      <li>At the default 0.5 threshold the models miss many true cases. Threshold tuning would improve sensitivity.</li>
+      <li>Next: multiple survey years to look at trends, and subgroup analyses to study disparities.</li>
+    </ul>
+    <div class="tools"><span>R</span><span>glmnet</span><span>randomForest</span><span>caret</span><span>pROC</span><span>R Markdown</span></div>
+    <div class="pager"><a href="#tpo">← TPO inhibitors</a><a href="#mimic">Next: MIMIC-III →</a></div>
+  </div></div>
+</article>
+
+<article class="page" id="mimic" hidden>
+  <div class="page-hero"><div class="container narrow">
+    <a class="back" href="#projects">← All projects</a>
+    
+    <h1>ICU cohort characterization and mortality prediction in MIMIC-III</h1>
+    <p class="lead">With three classmates, I reproduced a published MIMIC-III study (Dai et al., PLOS ONE 2020) on the MIMIC-III demo database, then extended it with a model to predict in-hospital mortality.</p>
+  </div></div>
+  <div class="page-body"><div class="container narrow">
+    <dl class="details">
+      <div><dt>Type</dt><dd>Team project, 4 members</dd></div>
+      <div><dt>Data</dt><dd>MIMIC-III demo (~100 patients)</dd></div>
+      <div><dt>Benchmark</dt><dd>Dai et al. 2020, 38,156 patients</dd></div>
+      <div><dt>Tools</dt><dd>SQL, R</dd></div>
+    </dl>
+    <figure><img src="mimic_compare.png" alt="Demo vs full cohort: mortality 12% vs 15%, septicemia 6.5% vs 6.8%"><figcaption>Our demo-cohort results next to the published full cohort.</figcaption></figure>
+
+    <h2>What we did</h2>
+    <p>We joined five MIMIC-III tables (patients, admissions, ICU stays, diagnoses and the ICD-9 dictionary) with SQL to describe the cohort by age, length of stay, care unit and diagnosis, following the paper's methods. We then fit a logistic regression for in-hospital mortality in R and evaluated it with a confusion matrix and ROC analysis.</p>
+
+    <h2>What we found</h2>
+    <div class="nums"><div><b>0.78</b><span>ROC-AUC, in-hospital mortality</span></div><div><b>12% vs 15%</b><span>in-hospital mortality, demo vs. full</span></div><div><b>~2 days</b><span>typical ICU stay in both</span></div></div>
+    <p>Broad patterns held up in the small demo: septicemia stayed near the top of the diagnoses and a typical ICU stay was about two days. Exact percentages shifted noticeably with only about 100 patients. Common conditions like chronic ischemic heart disease and acute MI were underrepresented, and the mean and median definitions made some differences look bigger than they are.</p>
+
+    <h2>Takeaway</h2>
+    <p>A demo dataset is good for building and checking a workflow, but precise benchmarks need the full cohort.</p>
+    <div class="tools"><span>SQL</span><span>R</span><span>tidyverse</span><span>pROC</span><span>MIMIC-III</span></div>
+    <div class="pager"><a href="#asthma">← Childhood asthma</a><a href="#projects">Back to all projects →</a></div>
+  </div></div>
+</article>
+
+<!-- ================= CONTACT ================= -->
+<section class="band" id="contact">
+  <div class="container">
+    <h2>I'd love to hear from you</h2>
+    <p>I'm looking for bioinformatics analyst and computational biology roles.</p>
+    <div class="mail"><span>gautami.deshpande1412@gmail.com</span><button class="copy" type="button" data-copy>Copy</button></div>
+    <div class="social">
+      <a href="https://www.linkedin.com/in/gautamideshpande14/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 16 16"><path d="M0 1.15C0 .52.53 0 1.18 0h13.64C15.47 0 16 .52 16 1.15v13.7c0 .63-.53 1.15-1.18 1.15H1.18C.53 16 0 15.48 0 14.85V1.15zm4.94 12.24V6.17H2.54v7.22h2.4zM3.74 5.18c.84 0 1.36-.55 1.36-1.25-.02-.71-.52-1.25-1.34-1.25-.82 0-1.36.54-1.36 1.25 0 .7.52 1.25 1.33 1.25h.01zm4.91 8.21V9.36c0-.22.02-.43.08-.59.17-.43.57-.88 1.23-.88.87 0 1.22.66 1.22 1.64v3.86h2.4V9.25c0-2.22-1.18-3.25-2.76-3.25-1.27 0-1.84.7-2.16 1.19v.03h-.02l.02-.03V6.17h-2.4c.03.68 0 7.22 0 7.22h2.4z"/></svg></a>
+      <a href="https://github.com/Gautami1412" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    </div>
+  </div>
+</section>
+<footer>© 2026 Gautami Deshpande</footer>
+
+<script>
+(function(){
+  var home = document.getElementById("home");
+  var pages = Array.prototype.slice.call(document.querySelectorAll("article.page"));
+  var ids = pages.map(function(p){ return p.id; });
+  function route(){
+    var h = (location.hash || "").slice(1);
+    if (ids.indexOf(h) !== -1){
+      home.hidden = true;
+      pages.forEach(function(p){ p.hidden = p.id !== h; });
+      window.scrollTo(0,0);
+    } else {
+      var wasHidden = home.hidden;
+      home.hidden = false;
+      pages.forEach(function(p){ p.hidden = true; });
+      var el = h && document.getElementById(h);
+      if (el) { el.scrollIntoView({block:"start"}); }
+      else if (wasHidden) { window.scrollTo(0,0); }
+    }
+  }
+  window.addEventListener("hashchange", route);
+  route();
+
+  var addr = "gautami.deshpande1412@gmail.com";
+  Array.prototype.forEach.call(document.querySelectorAll("[data-copy]"), function(b){
+    var label = b.textContent;
+    b.addEventListener("click", function(){
+      function done(t){ b.textContent = t; setTimeout(function(){ b.textContent = label; }, 1600); }
+      try {
+        navigator.clipboard.writeText(addr).then(function(){ done("Copied"); }, function(){ selectEmail(); done("Selected"); });
+      } catch(e){ selectEmail(); done("Selected"); }
+    });
+  });
+  function selectEmail(){
+    var el = document.getElementById("email"); if(!el) return;
+    var r = document.createRange(); r.selectNodeContents(el);
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+  }
+})();
+</script>
+
+</body>
+</html>
