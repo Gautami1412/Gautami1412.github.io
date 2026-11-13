@@ -363,7 +363,7 @@ footer a{color:var(--muted)}
   </div></div>
   <div class="page-body"><div class="pp-inner">
     <dl class="details">
-      <div><dt>Status</dt><dd>Pipeline built; compute running on AWS</dd></div>
+      <div><dt>Status</dt><dd>Pipeline built and containerized; full cohort run on AWS at 98%, benchmarking step being finalized</dd></div>
       <div><dt>Samples</dt><dd>12 from 1000 Genomes + 3 GIAB</dd></div>
       <div><dt>Region</dt><dd>chr6:28.5–33.5 Mb (GRCh38)</dd></div>
       <div><dt>Code</dt><dd><a href="https://github.com/Gautami1412/hla-multi-ancestry-pipeline" target="_blank" rel="noopener">GitHub ↗</a></dd></div>
@@ -381,7 +381,7 @@ footer a{color:var(--muted)}
     </ul>
 
     <h2>Where it stands</h2>
-    <p>The full pipeline is written and passes a Snakemake dry run end to end. All reference data and all 15 samples are downloaded and indexed. Alignment needs more memory than my laptop has, so I'm moving the compute-heavy stages to AWS with Docker. There are no results yet.</p>
+    <p>The full pipeline is written and passes a Snakemake dry run end to end. All reference data and all 15 samples are downloaded, indexed, and uploaded to S3. Alignment needs more memory than my laptop has, so I moved the heavy stages to AWS Batch, using a Docker image that GitHub Actions builds, tests, and publishes. A one-sample test on the cloud passed, and the full-cohort run completed 195 of 200 steps, including joint genotyping and filtering for all 15 samples. The remaining step is hap.py benchmarking, which stopped on an argument error that I have identified and am fixing. There are no accuracy results yet.</p>
     <div class="tools"><span>Snakemake</span><span>BWA-MEM</span><span>GATK4</span><span>hap.py</span><span>FastQC</span><span>fastp</span><span>Docker</span><span>AWS Batch</span></div>
     <div class="pager"><a href="#project-mitonuclear">← Mitonuclear mismatch</a><a href="#project-leukemia">Next: Leukemia classification →</a></div>
   </div></div></template>
